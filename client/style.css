@@ -131,6 +131,8 @@ header {
 .color3 { background-color: #34a853; }
 .color4 { background-color: #4285f4; }
 .color5 { background-color: #a142f4; }
+.color6 { background-color: #ffff4d; }
+.color7 { background-color: #ff7043; }
 /* Panel Styles */
 .search-panel, .info-panel {
   display: none;
