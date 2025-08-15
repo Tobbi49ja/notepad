@@ -1,0 +1,273 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #262626;
+  color: aliceblue;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  position: relative;
+  width: 30%;
+  min-height: 100vh; /* Default to 100vh */
+  max-width: 1440px;
+  margin: 0 auto;
+  border-right: 1px solid whitesmoke;
+  border-left: 1px solid whitesmoke;
+  transition: min-height 0.3s ease; /* Smooth height transition */
+}
+.container.has-notes {
+  min-height: auto; /* Switch to auto when notes exceed 100vh */
+}
+header {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fa-magnifying-glass, .fa-circle-info {
+  font-size: 15px;
+  background-color: #999999;
+  padding: 12px 29px 12px 14px;
+  border-radius: 12px;
+  margin-right: 12px;
+  color: #262626;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform animation */
+}
+.fa-magnifying-glass:hover, .fa-circle-info:hover {
+  background-color: #808080;
+  transform: scale(1.1); /* Slight scale on hover */
+}
+.fa-arrow-left {
+  font-size: 15px;
+  background-color: #999999;
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin-right: 12px;
+  color: #262626;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.fa-arrow-left:hover {
+  background-color: #808080;
+  transform: scale(1.1);
+}
+.bg-no {
+  background: transparent;
+  margin-right: 0;
+}
+.bg-no:hover {
+  background: transparent;
+}
+.fa-circle-plus {
+  position: absolute;
+  right: 20px;
+  bottom: 22px;
+  font-size: 50px;
+  color: #999999;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+.fa-circle-plus:hover {
+  color: #808080;
+  transform: rotate(90deg); /* Rotate on hover */
+}
+.fa-solid {
+  cursor: pointer;
+}
+.notes {
+  font-size: 36px;
+}
+.note-container {
+  display: flex;
+  justify-content: center;
+}
+.note-cards {
+  width: 90%;
+  margin: 0 auto;
+}
+.cards {
+  width: 100%;
+  min-height: 116px;
+  border-radius: 12px;
+  padding: 12px;
+  position: relative;
+  margin-top: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation for cards */
+}
+.note-title {
+  font-family: poppins;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.note-content {
+  font-family: poppins;
+  font-size: 16px;
+  word-wrap: break-word;
+}
+.note-actions {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+.note-actions .fa-solid {
+  margin-left: 8px;
+  font-size: 18px;
+  color: #262626;
+  transition: transform 0.2s ease;
+}
+.note-actions .fa-solid:hover {
+  transform: scale(1.2); /* Scale up note action icons on hover */
+}
+.mb-1 {
+  margin-top: 14px;
+}
+.color1 { background-color: #f28b82; }
+.color2 { background-color: #fbbc04; }
+.color3 { background-color: #34a853; }
+.color4 { background-color: #4285f4; }
+.color5 { background-color: #a142f4; }
+/* Panel Styles */
+.search-panel, .info-panel {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out; /* Fade-in for panels */
+}
+.panel-content {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  color: aliceblue;
+  animation: slideIn 0.3s ease-in-out; /* Slide-in for panel content */
+}
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.close:hover {
+  transform: rotate(90deg); /* Rotate close button on hover */
+}
+#search-input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background-color: #444;
+  color: aliceblue;
+  transition: background-color 0.3s ease;
+}
+#search-input:focus {
+  background-color: #555; /* Subtle background change on focus */
+}
+#search-results, #note-info-content, #app-info-content {
+  margin-top: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.search-result {
+  padding: 8px;
+  border-bottom: 1px solid #555;
+  animation: fadeIn 0.3s ease-in-out; /* Fade-in for search results */
+}
+/* Note Form Styles */
+.note-form-container {
+  width: 90%;
+  margin: 20px auto;
+}
+#note-form {
+  display: flex;
+  flex-direction: column;
+}
+#note-form label {
+  margin: 10px 0 5px;
+}
+#note-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fffafa;
+  color: black;
+}
+#note-form input:focus {
+  outline: none;
+}
+.submit-btn {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.submit-btn:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+#note-form button {
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+}
+#editor {
+  background-color: #ffffff;
+  color: black;
+  min-height: 230px;
+  margin-top: 12px;
+}
+@media (max-width: 768px) {
+  .container {
+    width: 40%;
+  }
+}
+@media (max-width: 425px) {
+  .container {
+    width: 100%;
+  }
+  .fa-circle-plus {
+    bottom: 2px;
+    right: 20px;
+  }
+}
+@media (max-width: 375px) {
+  .container {
+    width: 100%;
+  }
+}
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
